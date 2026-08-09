@@ -1,9 +1,9 @@
-from reportlab.lib.pagesizes import A4
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, Table, TableStyle, KeepTogether
-from reportlab.lib.styles import ParagraphStyle
-from reportlab.lib.enums import TA_CENTER
-from reportlab.lib import colors
-from reportlab.lib.units import mm
+from reportlab.lib import colors  # type: ignore[import]
+from reportlab.lib.pagesizes import A4  # type: ignore[import]
+from reportlab.lib.styles import ParagraphStyle  # type: ignore[import]
+from reportlab.lib.enums import TA_CENTER  # type: ignore[import]
+from reportlab.lib.units import mm  # type: ignore[import]
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, Table, TableStyle, KeepTogether  # type: ignore[import]
 
 import os
 
