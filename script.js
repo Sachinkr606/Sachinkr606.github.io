@@ -284,40 +284,63 @@ document.addEventListener("DOMContentLoaded", () => {
             const resumeContent = `
                 <div style="text-align:center;margin-bottom:20px;">
                     <h3 class="modal-title" style="margin-bottom:5px;padding-right:0;">SACHIN KUMAR</h3>
-                    <p style="color:var(--primary);font-weight:600;">Aspiring Data Scientist | BCA Student</p>
-                    <p style="font-size:13px;color:var(--text-secondary);">Jamshedpur, Jharkhand | Direct Email via Contact Form</p>
+                    <p style="color:var(--primary);font-weight:600;font-size:13px;">DATA SCIENCE INTERN | ASPIRING DATA SCIENTIST | PYTHON | SQL | POWER BI | DATA ANALYSIS</p>
+                    <p style="font-size:12px;color:var(--text-secondary);">Jamshedpur, Jharkhand | +91 8207548606 | kumarsachin8207548606@gmail.com</p>
+                    <p style="font-size:12px;color:var(--text-secondary);">GitHub: <a href="https://github.com/Sachinkr606" target="_blank" rel="noopener noreferrer" style="color:var(--primary);">github.com/Sachinkr606</a> &nbsp;|&nbsp; LinkedIn: <a href="https://linkedin.com/in/sachinkr606/" target="_blank" rel="noopener noreferrer" style="color:var(--primary);">linkedin.com/in/sachinkr606/</a></p>
                 </div>
                 <div class="modal-body">
+                    <h4><i class="fa-solid fa-user" style="color:var(--primary);margin-right:8px;"></i> About Me</h4>
+                    <p>BCA student and Data Science Intern with hands-on knowledge of Python, SQL, Machine Learning, Power BI, Excel, and data analysis. Skilled in data cleaning, data processing, exploratory data analysis, data visualization, insight generation, and analytical problem-solving.</p>
+
                     <h4><i class="fa-solid fa-user-graduate" style="color:var(--primary);margin-right:8px;"></i> Education</h4>
                     <ul>
-                        <li><strong>Bachelor of Computer Applications (BCA)</strong> — Srinath University (2024 - 2027) | Score: 69.05%</li>
-                        <li><strong>12th Science</strong> — Punyark Vidya Mandir (48.9%)</li>
-                        <li><strong>10th Science</strong> — Vidya Jyoti School (64.75%)</li>
+                        <li><strong>Bachelor of Computer Applications (BCA)</strong> — Srinath University, Jamshedpur | 2024–Present | 69.05%</li>
+                        <li><strong>Senior Secondary (Class XII) – Science Stream</strong> — Punyark Vidya Mandir, Bihar | 2022–2024 | 48.9%</li>
+                        <li><strong>Secondary (Class X)</strong> — Vidya Jyoti School, Jamshedpur | 2017–2022 | 64.75%</li>
                     </ul>
 
-                    <h4><i class="fa-solid fa-briefcase" style="color:var(--primary);margin-right:8px;"></i> Internship Experience</h4>
+                    <h4><i class="fa-solid fa-briefcase" style="color:var(--primary);margin-right:8px;"></i> Experience</h4>
+                    <p style="margin-bottom:4px;"><strong>Data Science Intern</strong> — Vizztal Academy, Adityapur, Jamshedpur | July 2026–Present | 6-month internship</p>
                     <ul>
-                        <li><strong>Technical / Data Science Intern</strong> — Vizzital Academy (6 Months)</li>
-                        <li>Built Python data pipelines, exploratory data analysis scripts, and database queries.</li>
+                        <li>Work with Python for data analysis, data processing, and problem-solving across practical datasets and projects.</li>
+                        <li>Apply Machine Learning concepts and algorithms to practical datasets and strengthen AI/ML foundations.</li>
+                        <li>Develop skills in SQL, Power BI, Excel, data visualization, data cleaning, analysis, and insight generation.</li>
+                        <li>Strengthen analytical thinking, teamwork, communication, and practical problem-solving through hands-on learning.</li>
+                    </ul>
+                    <p style="margin-bottom:4px;"><strong>Data Analytics Workshop</strong> — Venturing Digitally | 7 Days</p>
+                    <ul>
+                        <li>Applied data analysis fundamentals and data handling techniques using real-world-style datasets.</li>
+                        <li>Used Microsoft Excel for data organization, data cleaning, visualization, and basic insight generation.</li>
+                        <li>Completed hands-on assignments simulating industry data scenarios.</li>
+                    </ul>
+
+                    <h4><i class="fa-solid fa-laptop-code" style="color:var(--primary);margin-right:8px;"></i> Projects</h4>
+                    <ul>
+                        <li><strong>Personal Portfolio Website</strong> (HTML, CSS, JavaScript | GitHub Pages) — Designed and deployed a personal portfolio website to showcase profile, skills, projects, and contact information.</li>
+                        <li><strong>Phone Book Management System</strong> (C++ | File Handling | CRUD Operations) — Developed a console-based contact management application supporting add, search, update, and delete operations.</li>
                     </ul>
 
                     <h4><i class="fa-solid fa-code" style="color:var(--primary);margin-right:8px;"></i> Technical Skills</h4>
                     <ul>
-                        <li><strong>Languages:</strong> Python, C++, SQL, Java (Basics)</li>
-                        <li><strong>Data Libraries:</strong> Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn</li>
-                        <li><strong>Databases & Tools:</strong> MySQL, Oracle DB, Power BI, Excel, Git, VS Code</li>
+                        <li><strong>Programming:</strong> Python, C, C++</li>
+                        <li><strong>Data &amp; Analytics:</strong> Data Analysis, EDA, Statistical Data Analysis, Data Cleaning, Data Processing</li>
+                        <li><strong>Databases:</strong> SQL, MySQL</li>
+                        <li><strong>Visualization &amp; BI:</strong> Power BI, Microsoft Excel, Data Visualization</li>
+                        <li><strong>AI / ML:</strong> Artificial Intelligence, Machine Learning, ML Algorithms</li>
+                        <li><strong>Core:</strong> Problem-Solving, Analytical Thinking, Teamwork, Communication</li>
                     </ul>
 
-                    <h4><i class="fa-solid fa-laptop-code" style="color:var(--primary);margin-right:8px;"></i> Key Projects</h4>
+                    <h4><i class="fa-solid fa-certificate" style="color:var(--primary);margin-right:8px;"></i> Certifications &amp; Courses</h4>
                     <ul>
-                        <li><strong>PresentSir:</strong> ASP.NET Core & Oracle QR Attendance Management System.</li>
-                        <li><strong>Phone Book Management:</strong> Modern C++ OOP contact application.</li>
+                        <li>AWS AI Practitioner Challenge</li>
+                        <li>Microsoft Excel with AI Masterclass — Skill Course (Self-Learning)</li>
+                        <li>Basic Data Science and Artificial Intelligence — Feuchr School of Excellence</li>
                     </ul>
                 </div>
-                <div class="modal-actions" style="justify-content:center;">
-                    <button class="btn btn-primary" id="print-resume-btn">
-                        <i class="fa-solid fa-print"></i> Print / Save as PDF
-                    </button>
+                <div class="modal-actions" style="justify-content:center;gap:12px;">
+                    <a href="resume.pdf" download="Sachin_Kumar_Resume.pdf" class="btn btn-primary">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </a>
                     <button class="btn btn-outline" onclick="document.getElementById('modal-close').click()">
                         Close
                     </button>
@@ -325,16 +348,10 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             openModal(resumeContent);
 
-            setTimeout(() => {
-                const printBtn = document.getElementById("print-resume-btn");
-                if (printBtn) {
-                    printBtn.addEventListener("click", () => {
-                        window.print();
-                    });
-                }
-            }, 100);
+
         });
     }
+
 
 
     // ==========================================

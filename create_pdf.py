@@ -1,114 +1,133 @@
+from reportlab.lib.pagesizes import A4
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, Table, TableStyle, KeepTogether
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.enums import TA_CENTER
+from reportlab.lib import colors
+from reportlab.lib.units import mm
+
 import os
 
-def create_resume_pdf(filename="resume.pdf"):
-    # PDF specification 1.4 generator in pure Python
-    title = "SACHIN KUMAR"
-    subtitle = "Aspiring Data Scientist | BCA Student"
-    contact = "Jamshedpur, Jharkhand | kumarsachin8207548606@gmail.com | github.com/kumarsachin8207548606-ship-it"
-    
-    sections = [
-        ("EDUCATION", [
-            ("Bachelor of Computer Applications (BCA)", "Srinath University (2024 - 2027) | Score: 69.05%"),
-            ("12th Science", "Punyark Vidya Mandir (48.9%)"),
-            ("10th Science", "Vidya Jyoti School (64.75%)")
-        ]),
-        ("INTERNSHIP EXPERIENCE", [
-            ("Technical / Data Science Intern", "Vizzital Academy (6 Months)"),
-            ("Key Responsibilities:", "Built Python data pipelines, exploratory data analysis scripts, and database queries.")
-        ]),
-        ("TECHNICAL SKILLS", [
-            ("Languages:", "Python, C++, SQL, Java (Basics)"),
-            ("Data Libraries:", "Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn"),
-            ("Databases & Tools:", "MySQL, Oracle DB, Power BI, Excel, Git, VS Code")
-        ]),
-        ("KEY PROJECTS", [
-            ("PresentSir:", "ASP.NET Core & Oracle QR Attendance Management System"),
-            ("Phone Book Management:", "Modern C++ OOP contact application with binary file storage")
-        ])
+# Output path (same folder as this script)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+pdf_path  = os.path.join(BASE_DIR, "resume.pdf")
+
+# ─────────────────────────────────────────────
+# PDF GENERATION  (ReportLab – ATS one-page)
+# ─────────────────────────────────────────────
+base    = ParagraphStyle("b",    fontName="Helvetica",      fontSize=7.15, leading=8.35, textColor=colors.HexColor("#222222"))
+name    = ParagraphStyle("n",    parent=base, fontName="Helvetica-Bold", fontSize=18, leading=19, alignment=TA_CENTER, spaceAfter=1)
+title   = ParagraphStyle("t",    parent=base, fontSize=8.05, leading=9.25, alignment=TA_CENTER, textColor=colors.HexColor("#444444"), spaceAfter=2.3)
+contact = ParagraphStyle("c",    parent=base, fontSize=6.65, leading=7.8,  alignment=TA_CENTER, textColor=colors.HexColor("#444444"), spaceAfter=2.2)
+section = ParagraphStyle("s",    parent=base, fontName="Helvetica-Bold", fontSize=8.25, leading=9.3, spaceBefore=2.7, spaceAfter=1.5)
+body    = ParagraphStyle("body", parent=base, fontSize=7.05, leading=8.25, spaceAfter=.8)
+item    = ParagraphStyle("i",    parent=base, fontSize=6.9,  leading=8.05, spaceAfter=.45)
+job     = ParagraphStyle("j",    parent=base, fontName="Helvetica-Bold", fontSize=7.3, leading=8.3, spaceAfter=.1)
+meta    = ParagraphStyle("m",    parent=base, fontSize=6.65, leading=7.7, textColor=colors.HexColor("#555555"), spaceAfter=.5)
+
+doc = SimpleDocTemplate(
+    pdf_path, pagesize=A4,
+    leftMargin=17*mm, rightMargin=17*mm,
+    topMargin=9*mm,   bottomMargin=7*mm
+)
+
+story = [
+    Paragraph("SACHIN KUMAR", name),
+    Paragraph("DATA SCIENCE INTERN | ASPIRING DATA SCIENTIST | PYTHON | SQL | POWER BI | DATA ANALYSIS", title),
+    Paragraph(
+        "Jamshedpur, Jharkhand | +91 8207548606 | kumarsachin8207548606@gmail.com | "
+        "GitHub: github.com/Sachinkr606 | LinkedIn: linkedin.com/in/sachinkr606/",
+        contact
+    ),
+]
+
+def sec(x):
+    return [
+        Paragraph(x, section),
+        HRFlowable(width="100%", thickness=.5, color=colors.HexColor("#777777"),
+                   spaceBefore=0, spaceAfter=1.5),
     ]
 
-    # Build stream content
-    lines = []
-    lines.append("BT")
-    
-    # Header Name
-    lines.append("/F2 22 Tf")
-    lines.append("1 0 0 1 50 750 Tm")
-    lines.append("(SACHIN KUMAR) Tj")
-    
-    # Subtitle
-    lines.append("/F1 12 Tf")
-    lines.append("1 0 0 1 50 730 Tm")
-    lines.append("(Aspiring Data Scientist | BCA Student) Tj")
-    
-    # Contact
-    lines.append("/F1 9 Tf")
-    lines.append("1 0 0 1 50 715 Tm")
-    lines.append("(Jamshedpur, Jharkhand | Email: kumarsachin8207548606@gmail.com) Tj")
-    
-    y = 680
-    for sec_title, items in sections:
-        # Line divider
-        lines.append("ET")
-        lines.append(f"0.2 0.4 0.8 rg") # Accent color line
-        lines.append(f"50 {y+12} 512 1.5 re f")
-        lines.append("0 0 0 rg") # Reset color
-        lines.append("BT")
-        
-        # Section title
-        lines.append("/F2 13 Tf")
-        lines.append(f"1 0 0 1 50 {y} Tm")
-        lines.append(f"({sec_title}) Tj")
-        y -= 20
-        
-        for item_header, item_desc in items:
-            lines.append("/F2 10 Tf")
-            lines.append(f"1 0 0 1 60 {y} Tm")
-            # Escape parenthesis
-            clean_hdr = item_header.replace("(", "\\(").replace(")", "\\)")
-            lines.append(f"({clean_hdr}) Tj")
-            
-            lines.append("/F1 10 Tf")
-            lines.append(f"1 0 0 1 200 {y} Tm")
-            clean_desc = item_desc.replace("(", "\\(").replace(")", "\\)")
-            lines.append(f"({clean_desc}) Tj")
-            y -= 16
-        y -= 12
+# About
+story += sec("ABOUT ME")
+story.append(Paragraph(
+    "BCA student and Data Science Intern with hands-on knowledge of Python, SQL, Machine Learning, "
+    "Power BI, Excel, and data analysis. Skilled in data cleaning, data processing, exploratory data "
+    "analysis, data visualization, insight generation, and analytical problem-solving. Interested in "
+    "applying data-driven approaches to real-world problems and building a career in Data Science and AI/ML.",
+    body
+))
 
-    lines.append("ET")
-    content_stream = "\n".join(lines).encode('latin-1')
+# Education
+story += sec("EDUCATION")
+for a, b in [
+    ("Bachelor of Computer Applications (BCA)",       "Srinath University, Jamshedpur, Jharkhand | 2024–Present | 69.05%"),
+    ("Senior Secondary (Class XII) – Science Stream", "Punyark Vidya Mandir, Pundarakh, Bihar | 2022–2024 | 48.9%"),
+    ("Secondary (Class X)",                           "Vidya Jyoti School, Gamharia, Jamshedpur | 2017–2022 | 64.75%"),
+]:
+    story += [Paragraph(a, job), Paragraph(b, meta)]
 
-    objects = []
-    # 1: Catalog
-    objects.append(b"<< /Type /Catalog /Pages 2 0 R >>")
-    # 2: Pages
-    objects.append(b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>")
-    # 3: Page
-    objects.append(b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>")
-    # 4: Font F1
-    objects.append(b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>")
-    # 5: Font F2
-    objects.append(b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>")
-    # 6: Contents Stream
-    objects.append(f"<< /Length {len(content_stream)} >>\nstream\n".encode('latin-1') + content_stream + b"\nendstream")
+# Experience
+story += sec("EXPERIENCE")
+story.append(KeepTogether([
+    Paragraph("Data Science Intern", job),
+    Paragraph("Vizztal Academy, Adityapur, Jamshedpur | July 2026–Present | 6-month internship", meta),
+    Paragraph("• Work with Python for data analysis, data processing, and problem-solving across practical datasets and projects.", item),
+    Paragraph("• Apply Machine Learning concepts and algorithms to practical datasets and strengthen AI/ML foundations.", item),
+    Paragraph("• Develop skills in SQL, Power BI, Excel, data visualization, data cleaning, analysis, and insight generation.", item),
+    Paragraph("• Strengthen analytical thinking, teamwork, communication, and practical problem-solving through hands-on learning.", item),
+]))
+story.append(Spacer(1, .5))
+story.append(KeepTogether([
+    Paragraph("Data Analytics Workshop", job),
+    Paragraph("Venturing Digitally | 7 Days", meta),
+    Paragraph("• Applied data analysis fundamentals and data handling techniques using real-world-style datasets.", item),
+    Paragraph("• Used Microsoft Excel for data organization, data cleaning, visualization, and basic insight generation.", item),
+    Paragraph("• Completed hands-on assignments simulating industry data scenarios.", item),
+]))
 
-    # Assemble PDF
-    pdf_data = b"%PDF-1.4\n"
-    offsets = []
-    for i, obj in enumerate(objects, 1):
-        offsets.append(len(pdf_data))
-        pdf_data += f"{i} 0 obj\n".encode('latin-1') + obj + b"\nendobj\n"
-    
-    xref_offset = len(pdf_data)
-    pdf_data += f"xref\n0 {len(objects)+1}\n0000000000 65535 f \n".encode('latin-1')
-    for off in offsets:
-        pdf_data += f"{off:010d} 00000 n \n".encode('latin-1')
-        
-    pdf_data += f"trailer\n<< /Size {len(objects)+1} /Root 1 0 R >>\nstartxref\n{xref_offset}\n%%EOF".encode('latin-1')
-    
-    with open(filename, "wb") as f:
-        f.write(pdf_data)
-    print(f"Created {filename} successfully ({len(pdf_data)} bytes)")
+# Projects
+story += sec("PROJECTS")
+story += [
+    Paragraph("Personal Portfolio Website", job),
+    Paragraph("HTML, CSS, JavaScript | GitHub Pages", meta),
+    Paragraph("• Designed and deployed a personal portfolio website to showcase profile, skills, projects, and contact information.", item),
+    Paragraph("Phone Book Management System", job),
+    Paragraph("C++ | File Handling | CRUD Operations", meta),
+    Paragraph("• Developed a console-based contact management application supporting add, search, update, and delete operations.", item),
+]
 
-if __name__ == "__main__":
-    create_resume_pdf("resume.pdf")
+# Technical Skills
+story += sec("TECHNICAL SKILLS")
+skills = [
+    [
+        Paragraph("<b>Programming</b><br/>Python, C, C++", item),
+        Paragraph("<b>Data &amp; Analytics</b><br/>Data Analysis, EDA, Statistical Data Analysis, Data Cleaning, Data Processing", item),
+        Paragraph("<b>Databases</b><br/>SQL, MySQL", item),
+    ],
+    [
+        Paragraph("<b>Visualization &amp; BI</b><br/>Power BI, Microsoft Excel, Data Visualization", item),
+        Paragraph("<b>AI / ML</b><br/>Artificial Intelligence, Machine Learning, ML Algorithms", item),
+        Paragraph("<b>Core</b><br/>Problem-Solving, Analytical Thinking, Teamwork, Communication", item),
+    ],
+]
+tbl = Table(skills, colWidths=[55*mm, 65*mm, 55*mm])
+tbl.setStyle(TableStyle([
+    ("VALIGN",        (0, 0), (-1, -1), "TOP"),
+    ("LEFTPADDING",   (0, 0), (-1, -1), 0),
+    ("RIGHTPADDING",  (0, 0), (-1, -1), 5),
+    ("TOPPADDING",    (0, 0), (-1, -1), .3),
+    ("BOTTOMPADDING", (0, 0), (-1, -1), .3),
+]))
+story.append(tbl)
+
+# Certifications
+story += sec("CERTIFICATIONS & COURSES")
+for x in [
+    "AWS AI Practitioner Challenge",
+    "Microsoft Excel with AI Masterclass — Skill Course (Self-Learning)",
+    "Basic Data Science and Artificial Intelligence — Feuchr School of Excellence",
+]:
+    story.append(Paragraph("• " + x, item))
+
+doc.build(story)
+print(f"PDF saved: {pdf_path}")
