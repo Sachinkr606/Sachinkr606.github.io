@@ -101,10 +101,8 @@ img {
 }
 
 .section-heading {
-    display: flex;
-    align-items: center;
-    gap: 14px;
     margin-bottom: 28px;
+    position: relative;
 }
 
 .section-heading span {
@@ -2032,6 +2030,217 @@ img {
     .toast-container {
         display: none !important;
     }
+}
+
+
+/* ==========================================
+   SCROLL REVEAL & APPEARANCE ENGINE
+   ========================================== */
+
+/* Base state for reveal elements */
+.reveal,
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-scale,
+.reveal-fade {
+    opacity: 0;
+    will-change: opacity, transform;
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal,
+.reveal-up {
+    transform: translate3d(0, 40px, 0);
+}
+
+.reveal-left {
+    transform: translate3d(-45px, 0, 0);
+}
+
+.reveal-right {
+    transform: translate3d(45px, 0, 0);
+}
+
+.reveal-scale {
+    transform: scale(0.9) translate3d(0, 25px, 0);
+}
+
+.reveal-fade {
+    transform: translate3d(0, 0, 0);
+}
+
+/* Revealed Active State */
+.reveal.active,
+.reveal.revealed,
+.reveal-up.active,
+.reveal-up.revealed,
+.reveal-left.active,
+.reveal-left.revealed,
+.reveal-right.active,
+.reveal-right.revealed,
+.reveal-scale.active,
+.reveal-scale.revealed,
+.reveal-fade.active,
+.reveal-fade.revealed {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Stagger container children delays */
+.stagger-container > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger-container > *:nth-child(2) { transition-delay: 0.12s; }
+.stagger-container > *:nth-child(3) { transition-delay: 0.19s; }
+.stagger-container > *:nth-child(4) { transition-delay: 0.26s; }
+.stagger-container > *:nth-child(5) { transition-delay: 0.33s; }
+.stagger-container > *:nth-child(6) { transition-delay: 0.40s; }
+.stagger-container > *:nth-child(7) { transition-delay: 0.47s; }
+.stagger-container > *:nth-child(8) { transition-delay: 0.54s; }
+
+/* Hero Entrance Animations */
+.hero-intro {
+    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+}
+
+.hero h1 {
+    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.22s backwards;
+}
+
+.hero h2 {
+    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
+}
+
+.hero-description {
+    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.48s backwards;
+}
+
+.hero-buttons {
+    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s backwards;
+}
+
+.social-links {
+    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.72s backwards;
+}
+
+.hero-visual {
+    animation: heroScaleIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s backwards;
+}
+
+@keyframes heroFadeUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 30px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes heroScaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.88) translate3d(0, 20px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translate3d(0, 0, 0);
+    }
+}
+
+/* Profile Card Subtle Aura Glow */
+.profile-card::after {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    background: radial-gradient(circle at center, rgba(79, 140, 255, 0.22), rgba(139, 92, 246, 0.14), transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulseAura 6s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes pulseAura {
+    0% {
+        transform: scale(0.92);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 0.85;
+    }
+}
+
+/* Enhanced Micro-Interactions on Cards & Buttons */
+.highlight-card,
+.skill-category,
+.education-card,
+.contact-info,
+.contact-form,
+.timeline-content {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s ease,
+                background-color 0.35s ease;
+}
+
+.highlight-card:hover,
+.skill-category:hover,
+.education-card:hover,
+.timeline-content:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: rgba(79, 140, 255, 0.35);
+    box-shadow: 0 15px 35px -10px rgba(79, 140, 255, 0.18), 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.project-card:hover {
+    transform: translateY(-7px) scale(1.01);
+    border-color: rgba(79, 140, 255, 0.4);
+    box-shadow: 0 20px 45px -10px rgba(79, 140, 255, 0.22), 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.project-card .project-icon {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s ease;
+}
+
+.project-card:hover .project-icon {
+    transform: scale(1.12) rotate(4deg);
+    background: rgba(79, 140, 255, 0.2);
+}
+
+/* Button Shimmer / Sheen Hover Effect */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-primary::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        60deg,
+        transparent,
+        rgba(255, 255, 255, 0.28),
+        transparent
+    );
+    transform: rotate(30deg) translateX(-100%);
+    transition: transform 0.65s ease;
+    z-index: -1;
+}
+
+.btn-primary:hover::before {
+    transform: rotate(30deg) translateX(100%);
+}
+
+.btn-primary:active,
+.btn-outline:active {
+    transform: scale(0.97) translateY(0);
 }
 
 

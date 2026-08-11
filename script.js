@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
-    // PROJECT FILTERING
+    // PROJECT FILTERING WITH SMOOTH ANIMATION
     // ==========================================
     const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
@@ -140,10 +140,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     const category = card.getAttribute("data-category");
                     if (filter === "all" || category === filter) {
                         card.style.display = "block";
-                        card.style.opacity = "1";
-                        card.style.transform = "translateY(0)";
+                        setTimeout(() => {
+                            card.style.opacity = "1";
+                            card.style.transform = "translate3d(0, 0, 0) scale(1)";
+                        }, 20);
                     } else {
-                        card.style.display = "none";
+                        card.style.opacity = "0";
+                        card.style.transform = "scale(0.94)";
+                        setTimeout(() => {
+                            if (card.style.opacity === "0") {
+                                card.style.display = "none";
+                            }
+                        }, 280);
                     }
                 });
             });
@@ -483,5 +491,54 @@ document.addEventListener("DOMContentLoaded", () => {
         footerP.innerHTML = `© ${new Date().getFullYear()} Sachin Kumar. All Rights Reserved.`;
     }
 
-    console.log("%cSachin Kumar Portfolio Loaded Successfully! 🚀", "color:#4f8cff;font-size:16px;font-weight:bold;");
+
+    // ==========================================
+    // SCROLL REVEAL ENGINE (INTERSECTION OBSERVER)
+    // ==========================================
+    function initScrollReveal() {
+        const autoTargets = document.querySelectorAll(
+            ".section-heading, .about-text, .about-highlights, .skills-grid, .projects-grid, .timeline, .education-grid, .roadmap, .contact-info, .contact-form"
+        );
+        autoTargets.forEach(el => {
+            if (!el.classList.contains("reveal") &&
+                !el.classList.contains("reveal-up") &&
+                !el.classList.contains("reveal-left") &&
+                !el.classList.contains("reveal-right") &&
+                !el.classList.contains("reveal-scale") &&
+                !el.classList.contains("reveal-fade")) {
+                el.classList.add("reveal-up");
+            }
+        });
+
+        const revealElements = document.querySelectorAll(
+            ".reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .reveal-fade, .section-heading"
+        );
+
+        if (!revealElements.length) return;
+
+        if ("IntersectionObserver" in window) {
+            const observerOptions = {
+                root: null,
+                threshold: 0.12,
+                rootMargin: "0px 0px -40px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("revealed", "active");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        } else {
+            revealElements.forEach(el => el.classList.add("revealed", "active"));
+        }
+    }
+
+    initScrollReveal();
+
+    console.log("%cSachin Kumar Portfolio Loaded Successfully with Smooth Animations! 🚀", "color:#4f8cff;font-size:16px;font-weight:bold;");
 });
