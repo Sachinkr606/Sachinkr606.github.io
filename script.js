@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.documentElement.removeAttribute("data-theme");
 
 
+
     // ==========================================
     // MOBILE MENU
     // ==========================================
@@ -182,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <li><strong>Dynamic UI:</strong> Typing effect animation and responsive mobile drawer menu.</li>
                 </ul>
             `,
-            github: "https://github.com/kumarsachin8207548606-ship-it"
+            github: "https://github.com/Sachinkr606/Sachinkr606.github.io"
         },
         p2: {
             title: "Phone Book Management System",
@@ -197,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <li><strong>Fast Search:</strong> Optimized string searching algorithm for low latency response.</li>
                 </ul>
             `,
-            github: "https://github.com/kumarsachin8207548606-ship-it"
+            github: "https://github.com/Sachinkr606/PhoneBook-Management-System"
         },
         p3: {
             title: "Data Analytics Dashboard (Sales & Performance)",
@@ -212,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <li><strong>Power BI Dashboard:</strong> Interactive visual reports with dynamic KPIs and slicers.</li>
                 </ul>
             `,
-            github: "https://github.com/kumarsachin8207548606-ship-it"
+            github: "https://github.com/Sachinkr606"
         },
         p4: {
             title: "Machine Learning Predictive Modeling",
@@ -227,7 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <li><strong>Model Evaluation:</strong> Evaluation using Accuracy Score, Confusion Matrix, and Mean Squared Error.</li>
                 </ul>
             `,
-            github: "https://github.com/kumarsachin8207548606-ship-it"
+            github: "https://github.com/Sachinkr606"
         }
     };
 
@@ -414,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const contactForm = document.querySelector(".contact-form");
 
     if (contactForm) {
-        contactForm.addEventListener("submit", (e) => {
+        contactForm.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             const nameInput = document.querySelector("#name");
@@ -451,34 +452,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 submitBtn.innerHTML = `Sending... <i class="fa-solid fa-spinner fa-spin"></i>`;
             }
 
-            fetch("https://formsubmit.co/ajax/kumarsachin8207548606@gmail.com", {
-                method: "POST",
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    message: message,
-                    _subject: `New Portfolio Message from ${name}`
-                })
-            })
-            .then(res => res.json())
-            .then(() => {
-                showToast(`Thank you, ${name}! Your message was delivered directly to Sachin's inbox.`, "success");
-                contactForm.reset();
-            })
-            .catch(() => {
-                showToast(`Thank you, ${name}! Your message has been sent successfully.`, "success");
-                contactForm.reset();
-            })
-            .finally(() => {
+            try {
+                const response = await fetch("https://formsubmit.co/ajax/kumarsachin8207548606@gmail.com", {
+                    method: "POST",
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: message,
+                        _subject: `New Portfolio Message from ${name}`,
+                        _captcha: "false"
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && (data.success === "true" || data.success === true)) {
+                    showToast(`Thank you, ${name}! Your message was delivered directly to Sachin's inbox.`, "success");
+                    contactForm.reset();
+                } else if (data.message && data.message.toLowerCase().includes("activation")) {
+                    showToast("FormSubmit requires a 1-time setup! Check your inbox (kumarsachin8207548606@gmail.com) & click 'Activate Form'.", "info");
+                } else {
+                    throw new Error(data.message || "Form submission failed");
+                }
+            } catch (err) {
+                console.error("Contact Form Error:", err);
+                showToast("Unable to send message automatically. Please email directly at kumarsachin8207548606@gmail.com", "error");
+            } finally {
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = `Send Message <i class="fa-solid fa-paper-plane"></i>`;
                 }
-            });
+            }
         });
     }
 
