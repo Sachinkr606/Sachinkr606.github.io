@@ -5,6 +5,26 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // ==========================================
+    // WEBSITE PRELOADER ANIMATION
+    // ==========================================
+    const preloader = document.getElementById("preloader");
+    if (preloader) {
+        const dismissPreloader = () => {
+            if (!preloader.classList.contains("fade-out")) {
+                preloader.classList.add("fade-out");
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                }, 600);
+            }
+        };
+
+        // Dismiss only when ALL resources (images, fonts, scripts) have fully loaded
+        window.addEventListener("load", () => {
+            setTimeout(dismissPreloader, 300);
+        });
+    }
+
+    // ==========================================
     // TOAST NOTIFICATIONS
     // ==========================================
     const toastContainer = document.getElementById("toast-container");
@@ -548,5 +568,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initScrollReveal();
 
-    console.log("%cSachin Kumar Portfolio Loaded Successfully with Smooth Animations! 🚀", "color:#4f8cff;font-size:16px;font-weight:bold;");
+    console.log("%cSachin Kumar Portfolio Loaded Successfully! 🚀", "color:#4f8cff;font-size:16px;font-weight:bold;");
 });

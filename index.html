@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <link rel="icon" type="image/png" href="./images/character.png">
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
@@ -32,6 +32,24 @@
 </head>
 
 <body>
+
+    <!-- ================= PRELOADER ================= -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-rings">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="preloader-text">
+            <span class="preloader-code">import</span> portfolio<span class="preloader-code">...</span>
+        </div>
+        <div class="preloader-bar">
+            <div class="preloader-fill"></div>
+        </div>
+    </div>
+
+    <!-- ================= BACKGROUND ANIMATION ================= -->
+    <canvas id="bg-canvas"></canvas>
 
     <!-- ================= NAVBAR ================= -->
 
@@ -124,7 +142,9 @@
                             <i class="fa-brands fa-linkedin-in"></i>
                         </a>
 
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kumarsachin8207548606@gmail.com" aria-label="Email" target="_blank" rel="noopener noreferrer" class="email-btn-link" title="Send Email via Gmail">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kumarsachin8207548606@gmail.com"
+                            aria-label="Email" target="_blank" rel="noopener noreferrer" class="email-btn-link"
+                            title="Send Email via Gmail">
                             <i class="fa-solid fa-envelope"></i>
                         </a>
 
@@ -445,12 +465,14 @@
 
                         <div class="project-links">
 
-                            <a href="https://github.com/Sachinkr606/Sachinkr606.github.io" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/Sachinkr606/Sachinkr606.github.io" class="project-link"
+                                target="_blank" rel="noopener noreferrer">
                                 GitHub
                                 <i class="fa-brands fa-github"></i>
                             </a>
 
-                            <button class="project-link open-modal-btn" data-project="p1" style="background:none;border:none;cursor:pointer;">
+                            <button class="project-link open-modal-btn" data-project="p1"
+                                style="background:none;border:none;cursor:pointer;">
                                 Details
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </button>
@@ -492,12 +514,14 @@
 
                         <div class="project-links">
 
-                            <a href="https://github.com/Sachinkr606/PhoneBook-Management-System.git" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/Sachinkr606/PhoneBook-Management-System.git"
+                                class="project-link" target="_blank" rel="noopener noreferrer">
                                 GitHub
                                 <i class="fa-brands fa-github"></i>
                             </a>
 
-                            <button class="project-link open-modal-btn" data-project="p2" style="background:none;border:none;cursor:pointer;">
+                            <button class="project-link open-modal-btn" data-project="p2"
+                                style="background:none;border:none;cursor:pointer;">
                                 Details
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </button>
@@ -542,7 +566,8 @@
                         </div>
 
                         <div class="project-links">
-                            <button class="project-link open-modal-btn" data-project="p3" style="background:none;border:none;cursor:pointer;">
+                            <button class="project-link open-modal-btn" data-project="p3"
+                                style="background:none;border:none;cursor:pointer;">
                                 Overview
                                 <i class="fa-solid fa-circle-info"></i>
                             </button>
@@ -584,7 +609,8 @@
                         </div>
 
                         <div class="project-links">
-                            <button class="project-link open-modal-btn" data-project="p4" style="background:none;border:none;cursor:pointer;">
+                            <button class="project-link open-modal-btn" data-project="p4"
+                                style="background:none;border:none;cursor:pointer;">
                                 Overview
                                 <i class="fa-solid fa-circle-info"></i>
                             </button>
@@ -857,7 +883,9 @@
 
                         <div class="contact-details">
 
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kumarsachin8207548606@gmail.com" target="_blank" rel="noopener noreferrer" class="email-btn-link" title="Send Email via Gmail">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kumarsachin8207548606@gmail.com"
+                                target="_blank" rel="noopener noreferrer" class="email-btn-link"
+                                title="Send Email via Gmail">
 
                                 <i class="fa-solid fa-envelope"></i>
 
@@ -867,7 +895,8 @@
 
                             </a>
 
-                            <a href="https://www.linkedin.com/in/sachinkr606/" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.linkedin.com/in/sachinkr606/" target="_blank"
+                                rel="noopener noreferrer">
 
                                 <i class="fa-brands fa-linkedin"></i>
 
@@ -892,7 +921,8 @@
                     </div>
 
 
-                    <form class="contact-form reveal-right" action="https://formsubmit.co/kumarsachin8207548606@gmail.com" method="POST">
+                    <form class="contact-form reveal-right"
+                        action="https://formsubmit.co/kumarsachin8207548606@gmail.com" method="POST">
 
                         <!-- FormSubmit Configuration -->
                         <input type="hidden" name="_captcha" value="false">
@@ -926,7 +956,8 @@
                                 Message
                             </label>
 
-                            <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
+                            <textarea id="message" name="message" rows="5" placeholder="Write your message..."
+                                required></textarea>
 
                         </div>
 
@@ -963,28 +994,19 @@
             <div class="footer-social">
 
                 <!-- GitHub -->
-                <a href="https://github.com/Sachinkr606"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="GitHub">
+                <a href="https://github.com/Sachinkr606" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                     <i class="fa-brands fa-github"></i>
                 </a>
 
                 <!-- LinkedIn -->
-                <a href="https://www.linkedin.com/in/sachinkr606/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/sachinkr606/" target="_blank" rel="noopener noreferrer"
+                    aria-label="LinkedIn">
                     <i class="fa-brands fa-linkedin-in"></i>
                 </a>
 
                 <!-- Email -->
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kumarsachin8207548606@gmail.com"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="email-btn-link"
-                   aria-label="Email"
-                   title="Send Email via Gmail">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kumarsachin8207548606@gmail.com" target="_blank"
+                    rel="noopener noreferrer" class="email-btn-link" aria-label="Email" title="Send Email via Gmail">
                     <i class="fa-solid fa-envelope"></i>
                 </a>
 
@@ -999,11 +1021,7 @@
          BACK TO TOP
     ========================= -->
 
-    <a
-        href="#home"
-        class="back-to-top"
-        aria-label="Back to top"
-    >
+    <a href="#home" class="back-to-top" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </a>
 
@@ -1027,4 +1045,5 @@
     <div class="toast-container" id="toast-container"></div>
 
 </body>
+
 </html>
