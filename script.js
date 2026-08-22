@@ -144,40 +144,112 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
-    // PROJECT FILTERING WITH SMOOTH ANIMATION
+    // PROJECT FILTERING & 4-CARD AUTO-HIDE TOGGLE
     // ==========================================
     const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
+    const projectsToggleContainer = document.getElementById("projects-toggle-container");
+    const projectsToggleBtn = document.getElementById("projects-toggle-btn");
+
+    let currentFilter = "all";
+    let isProjectsExpanded = false;
+    const INITIAL_VISIBLE_COUNT = 4;
+
+    function renderProjects() {
+        const matchingCards = [];
+        const nonMatchingCards = [];
+
+        projectCards.forEach(card => {
+            const category = card.getAttribute("data-category");
+            if (currentFilter === "all" || category === currentFilter) {
+                matchingCards.push(card);
+            } else {
+                nonMatchingCards.push(card);
+            }
+        });
+
+        // Smoothly hide non-matching cards
+        nonMatchingCards.forEach(card => {
+            card.style.opacity = "0";
+            card.style.transform = "scale(0.94)";
+            setTimeout(() => {
+                if (card.style.opacity === "0") {
+                    card.style.display = "none";
+                }
+            }, 280);
+        });
+
+        // For matching cards: show first 4 by default unless expanded
+        matchingCards.forEach((card, index) => {
+            if (isProjectsExpanded || index < INITIAL_VISIBLE_COUNT) {
+                card.style.display = "block";
+                setTimeout(() => {
+                    card.style.opacity = "1";
+                    card.style.transform = "translate3d(0, 0, 0) scale(1)";
+                }, 20);
+            } else {
+                card.style.opacity = "0";
+                card.style.transform = "scale(0.94)";
+                setTimeout(() => {
+                    if (!isProjectsExpanded && index >= INITIAL_VISIBLE_COUNT) {
+                        card.style.display = "none";
+                    }
+                }, 280);
+            }
+        });
+
+        // Toggle button visibility & icon/text state
+        if (projectsToggleContainer && projectsToggleBtn) {
+            if (matchingCards.length > INITIAL_VISIBLE_COUNT) {
+                projectsToggleContainer.style.display = "flex";
+                const spanText = projectsToggleBtn.querySelector("span");
+                const icon = projectsToggleBtn.querySelector(".toggle-icon");
+                if (isProjectsExpanded) {
+                    if (spanText) spanText.textContent = "Show Less";
+                    if (icon) {
+                        icon.className = "fa-solid fa-chevron-up toggle-icon";
+                    }
+                    projectsToggleBtn.setAttribute("aria-expanded", "true");
+                } else {
+                    if (spanText) spanText.textContent = "Show All";
+                    if (icon) {
+                        icon.className = "fa-solid fa-chevron-down toggle-icon";
+                    }
+                    projectsToggleBtn.setAttribute("aria-expanded", "false");
+                }
+            } else {
+                projectsToggleContainer.style.display = "none";
+            }
+        }
+    }
 
     if (filterBtns.length > 0) {
         filterBtns.forEach(btn => {
             btn.addEventListener("click", () => {
                 filterBtns.forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
-
-                const filter = btn.getAttribute("data-filter");
-
-                projectCards.forEach(card => {
-                    const category = card.getAttribute("data-category");
-                    if (filter === "all" || category === filter) {
-                        card.style.display = "block";
-                        setTimeout(() => {
-                            card.style.opacity = "1";
-                            card.style.transform = "translate3d(0, 0, 0) scale(1)";
-                        }, 20);
-                    } else {
-                        card.style.opacity = "0";
-                        card.style.transform = "scale(0.94)";
-                        setTimeout(() => {
-                            if (card.style.opacity === "0") {
-                                card.style.display = "none";
-                            }
-                        }, 280);
-                    }
-                });
+                currentFilter = btn.getAttribute("data-filter") || "all";
+                isProjectsExpanded = false;
+                renderProjects();
             });
         });
     }
+
+    if (projectsToggleBtn) {
+        projectsToggleBtn.addEventListener("click", () => {
+            isProjectsExpanded = !isProjectsExpanded;
+            renderProjects();
+            if (!isProjectsExpanded) {
+                const projectsSection = document.getElementById("projects");
+                if (projectsSection) {
+                    projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            }
+        });
+    }
+
+    // Initial render: auto-hide projects beyond first 4
+    renderProjects();
 
 
     // ==========================================
@@ -249,6 +321,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 </ul>
             `,
             github: "https://github.com/Sachinkr606"
+        },
+        p5: {
+            title: "Typing Speed Test (Python GUI)",
+            category: "Python / Desktop Application",
+            tech: ["Python", "Tkinter", "GUI"],
+            description: `
+                <p>A desktop application built using Python and Tkinter to test and improve typing speed and accuracy in real time.</p>
+                <h4>Key Features</h4>
+                <ul>
+                    <li><strong>Live WPM & Accuracy:</strong> Real-time Words Per Minute and accuracy calculation.</li>
+                    <li><strong>Keystroke Highlighting:</strong> Visual feedback for correct and incorrect characters.</li>
+                    <li><strong>Timer & Summary:</strong> Automatic timer on first keystroke and test performance summary.</li>
+                </ul>
+            `,
+            github: "https://github.com/Sachinkr606/TypingTest"
         }
     };
 

@@ -1082,6 +1082,51 @@ img {
     letter-spacing: 1px;
 }
 
+/* =========================
+   PROJECTS TOGGLE BUTTON
+========================= */
+.projects-toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.projects-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 11px 26px;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: 30px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.projects-toggle-btn:hover {
+    background: var(--card-hover);
+    border-color: var(--primary);
+    color: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(79, 140, 255, 0.2);
+}
+
+.projects-toggle-btn .toggle-icon {
+    font-size: 12px;
+    color: var(--primary);
+    transition: transform 0.3s ease;
+}
+
+.projects-toggle-btn:hover .toggle-icon {
+    color: var(--primary-light);
+}
+
 
 /* =========================
    EXPERIENCE
