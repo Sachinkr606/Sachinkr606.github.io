@@ -54,7 +54,92 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("portfolio-theme");
     document.documentElement.removeAttribute("data-theme");
 
+    // ==========================================
+    // AMBIENT BACKGROUND CANVAS PARTICLES
+    // ==========================================
+    const bgCanvas = document.getElementById("bg-canvas");
+    if (bgCanvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const ctx = bgCanvas.getContext("2d");
+        let width = 0;
+        let height = 0;
+        let particles = [];
+        let animationFrameId = null;
 
+        function resizeCanvas() {
+            width = bgCanvas.width = window.innerWidth;
+            height = bgCanvas.height = window.innerHeight;
+            initParticles();
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(Math.floor((width * height) / 22000), width < 650 ? 25 : 55);
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.45,
+                    vy: (Math.random() - 0.5) * 0.45,
+                    radius: Math.random() * 1.5 + 0.8,
+                    alpha: Math.random() * 0.4 + 0.2
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, width, height);
+
+            const maxDist = width < 650 ? 85 : 120;
+            for (let i = 0; i < particles.length; i++) {
+                const p1 = particles[i];
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < maxDist) {
+                        const lineAlpha = (1 - dist / maxDist) * 0.14;
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(79, 140, 255, ${lineAlpha})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0) p.x = width;
+                else if (p.x > width) p.x = 0;
+                if (p.y < 0) p.y = height;
+                else if (p.y > height) p.y = 0;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(123, 167, 255, ${p.alpha})`;
+                ctx.fill();
+            }
+
+            animationFrameId = requestAnimationFrame(drawParticles);
+        }
+
+        resizeCanvas();
+        drawParticles();
+
+        let canvasResizeTimer;
+        window.addEventListener("resize", () => {
+            clearTimeout(canvasResizeTimer);
+            canvasResizeTimer = setTimeout(() => {
+                resizeCanvas();
+            }, 150);
+        }, { passive: true });
+    }
 
     // ==========================================
     // MOBILE MENU
@@ -144,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
-    // PROJECT FILTERING & 4-CARD AUTO-HIDE TOGGLE
+    // PROJECT FILTERING & RESPONSIVE TOGGLE ENGINE
     // ==========================================
     const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
@@ -153,9 +238,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentFilter = "all";
     let isProjectsExpanded = false;
-    const INITIAL_VISIBLE_COUNT = 4;
 
-    function renderProjects() {
+    function getInitialVisibleCount() {
+        return window.innerWidth <= 768 ? 2 : 4;
+    }
+
+    function renderProjects(preserveScroll = false) {
+        const initialCount = getInitialVisibleCount();
         const matchingCards = [];
         const nonMatchingCards = [];
 
@@ -168,42 +257,50 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Smoothly hide non-matching cards
+        // Smoothly hide non-matching cards and clean pending timers
         nonMatchingCards.forEach(card => {
+            if (card._hideTimer) clearTimeout(card._hideTimer);
+            if (card._showTimer) clearTimeout(card._showTimer);
+
             card.style.opacity = "0";
             card.style.transform = "scale(0.94)";
-            setTimeout(() => {
-                if (card.style.opacity === "0") {
-                    card.style.display = "none";
-                }
+            card._hideTimer = setTimeout(() => {
+                card.style.display = "none";
+                card.style.visibility = "hidden";
             }, 280);
         });
 
-        // For matching cards: show first 4 by default unless expanded
+        // Handle matching cards visibility based on expand state & screen size
         matchingCards.forEach((card, index) => {
-            if (isProjectsExpanded || index < INITIAL_VISIBLE_COUNT) {
+            if (card._hideTimer) clearTimeout(card._hideTimer);
+            if (card._showTimer) clearTimeout(card._showTimer);
+
+            if (isProjectsExpanded || index < initialCount) {
                 card.style.display = "block";
-                setTimeout(() => {
+                card.style.visibility = "visible";
+                card._showTimer = setTimeout(() => {
                     card.style.opacity = "1";
                     card.style.transform = "translate3d(0, 0, 0) scale(1)";
                 }, 20);
             } else {
                 card.style.opacity = "0";
                 card.style.transform = "scale(0.94)";
-                setTimeout(() => {
-                    if (!isProjectsExpanded && index >= INITIAL_VISIBLE_COUNT) {
+                card._hideTimer = setTimeout(() => {
+                    if (!isProjectsExpanded && index >= getInitialVisibleCount()) {
                         card.style.display = "none";
+                        card.style.visibility = "hidden";
                     }
                 }, 280);
             }
         });
 
-        // Toggle button visibility & icon/text state
+        // Toggle button visibility & dynamic text/icon state
         if (projectsToggleContainer && projectsToggleBtn) {
-            if (matchingCards.length > INITIAL_VISIBLE_COUNT) {
+            if (matchingCards.length > initialCount) {
                 projectsToggleContainer.style.display = "flex";
                 const spanText = projectsToggleBtn.querySelector("span");
                 const icon = projectsToggleBtn.querySelector(".toggle-icon");
+                
                 if (isProjectsExpanded) {
                     if (spanText) spanText.textContent = "Show Less";
                     if (icon) {
@@ -236,7 +333,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (projectsToggleBtn) {
-        projectsToggleBtn.addEventListener("click", () => {
+        projectsToggleBtn.addEventListener("click", (e) => {
+            e.preventDefault();
             isProjectsExpanded = !isProjectsExpanded;
             renderProjects();
             if (!isProjectsExpanded) {
@@ -248,7 +346,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Initial render: auto-hide projects beyond first 4
+    // Handle viewport resize dynamically
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            renderProjects();
+        }, 150);
+    }, { passive: true });
+
+    // Initial render
     renderProjects();
 
 

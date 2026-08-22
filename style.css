@@ -51,6 +51,8 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -59,6 +61,8 @@ body {
     color: var(--text);
     line-height: 1.7;
     overflow-x: hidden;
+    width: 100%;
+    position: relative;
 }
 
 /* =========================
@@ -376,51 +380,38 @@ img {
 
 .hero {
     min-height: 100vh;
-
     display: flex;
     align-items: center;
-
     position: relative;
-
     padding-top: 64px;
-
     overflow: hidden;
+    width: 100%;
 }
 
 .hero::before {
     content: "";
-
     position: absolute;
-
     width: 500px;
     height: 500px;
-
     top: 5%;
     right: -150px;
-
     background: rgba(79, 140, 255, 0.12);
-
     filter: blur(100px);
-
     border-radius: 50%;
+    pointer-events: none;
 }
 
 .hero::after {
     content: "";
-
     position: absolute;
-
     width: 400px;
     height: 400px;
-
     bottom: -200px;
     left: -150px;
-
     background: rgba(139, 92, 246, 0.1);
-
     filter: blur(100px);
-
     border-radius: 50%;
+    pointer-events: none;
 }
 
 .hero-content {
@@ -1097,8 +1088,8 @@ img {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 11px 26px;
-    font-size: 13.5px;
+    padding: 12px 28px;
+    font-size: 14px;
     font-weight: 600;
     border-radius: 30px;
     background: var(--card);
@@ -1107,6 +1098,13 @@ img {
     cursor: pointer;
     transition: var(--transition);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.projects-toggle-btn * {
+    pointer-events: none;
 }
 
 .projects-toggle-btn:hover {
@@ -1115,6 +1113,10 @@ img {
     color: var(--primary-light);
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(79, 140, 255, 0.2);
+}
+
+.projects-toggle-btn:active {
+    transform: scale(0.97);
 }
 
 .projects-toggle-btn .toggle-icon {
@@ -1767,10 +1769,16 @@ img {
         order: 1;
     }
 
+    .hero {
+        padding-top: 95px;
+    }
+
     .hero-visual {
         order: 0;
         justify-content: center;
         width: 100%;
+        margin-top: 12px;
+        margin-bottom: 20px;
     }
 
     .hero-description {
@@ -1822,62 +1830,84 @@ img {
 @media (max-width: 650px) {
 
     .section {
-        padding: 80px 0;
+        padding: 55px 0;
     }
 
     .section-heading {
-        margin-bottom: 35px;
+        margin-bottom: 25px;
     }
 
     .section-heading h2 {
-        font-size: 30px;
+        font-size: 28px;
     }
 
     .hero {
-        padding-top: 100px;
+        padding-top: 95px;
+        padding-bottom: 30px;
+        min-height: auto;
+    }
+
+    .hero-visual {
+        margin-top: 15px;
+        margin-bottom: 22px;
+    }
+
+    .hero::before {
+        width: 250px;
+        height: 250px;
+        top: 0;
+        right: -40px;
+        filter: blur(60px);
+    }
+
+    .hero::after {
+        width: 220px;
+        height: 220px;
+        bottom: -40px;
+        left: -40px;
+        filter: blur(60px);
     }
 
     .hero h1 {
-        font-size: 48px;
-
-        letter-spacing: -2.5px;
+        font-size: 42px;
+        letter-spacing: -2px;
     }
 
     .hero h2 {
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .hero-description {
         font-size: 14px;
+        max-width: 100%;
     }
 
     .profile-card {
-        width: 250px;
-        height: 250px;
+        width: 230px;
+        height: 230px;
         margin: 0 auto;
     }
 
     .profile-card::before {
-        width: 210px;
-        height: 210px;
+        width: 190px;
+        height: 190px;
     }
 
     .profile-circle {
-        width: 150px;
-        height: 150px;
+        width: 140px;
+        height: 140px;
     }
 
     .profile-placeholder {
-        width: 138px;
-        height: 138px;
-
-        font-size: 35px;
+        width: 125px;
+        height: 125px;
+        font-size: 32px;
     }
 
     .floating-card {
-        padding: 8px 11px;
-
-        font-size: 10px;
+        padding: 6px 10px;
+        font-size: 10.5px;
+        gap: 6px;
     }
 
     .card-python {
@@ -1887,33 +1917,35 @@ img {
     }
 
     .card-ML {
-        top: 22%;
-        left: -15px;
+        top: 24%;
+        left: -5px;
+        transform: translateY(-50%);
+    }
+
+    .card-sql {
+        top: 24%;
+        right: -5px;
+        transform: translateY(-50%);
     }
 
     .card-data {
         bottom: 4%;
-        left: -8px;
-    }
-
-    .card-sql {
-        top: 22%;
-        right: -15px;
+        left: 2px;
     }
 
     .card-AI {
         bottom: 4%;
-        right: -8px;
+        right: 2px;
     }
 
     .about-grid {
         grid-template-columns: 1fr;
-
-        gap: 35px;
+        gap: 30px;
     }
 
     .about-highlights {
         grid-template-columns: 1fr 1fr;
+        gap: 12px;
     }
 
     .skills-grid,
@@ -1923,15 +1955,17 @@ img {
     }
 
     .project-card {
-        padding: 25px;
+        padding: 20px;
     }
 
     .timeline-content {
-        padding: 22px;
+        padding: 18px 20px;
     }
 
     .roadmap {
         justify-content: flex-start;
+        max-width: 100%;
+        padding: 20px 0;
     }
 
     .roadmap-line {
@@ -1939,24 +1973,68 @@ img {
     }
 
     .contact-form {
-        padding: 22px;
+        padding: 20px;
     }
 
     .contact-info h3 {
-        font-size: 25px;
+        font-size: 22px;
     }
 
     .footer-content {
         flex-direction: column;
-
         gap: 15px;
-
         text-align: center;
     }
 
     .back-to-top {
         right: 15px;
         bottom: 15px;
+    }
+
+    .toast-container {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 360px;
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .profile-card {
+        width: 200px;
+        height: 200px;
+    }
+
+    .profile-card::before {
+        width: 165px;
+        height: 165px;
+    }
+
+    .profile-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .floating-card {
+        padding: 5px 8px;
+        font-size: 9px;
+    }
+
+    .card-ML {
+        left: 0;
+    }
+
+    .card-sql {
+        right: 0;
+    }
+
+    .about-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 34px;
     }
 }
 
@@ -1992,15 +2070,18 @@ img {
 }
 
 .filter-btn {
-    padding: 6px 16px;
+    padding: 7px 18px;
     border-radius: 25px;
     background: var(--card);
     border: 1px solid var(--border);
     color: var(--text-secondary);
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 .filter-btn:hover,
@@ -2009,6 +2090,10 @@ img {
     color: white;
     border-color: transparent;
     box-shadow: 0 4px 15px rgba(79, 140, 255, 0.25);
+}
+
+.filter-btn:active {
+    transform: scale(0.96);
 }
 
 /* Modals */
