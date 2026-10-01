@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    circle { fill: #111111; }
+    text { fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 900; font-size: 26px; letter-spacing: -1px; }
+    @media (prefers-color-scheme: dark) {
+      circle { fill: #ffffff; }
+      text { fill: #111111; }
+    }
+  </style>
+  <circle cx="32" cy="32" r="30"/>
+  <text x="32" y="41" text-anchor="middle">SK</text>
+</svg>

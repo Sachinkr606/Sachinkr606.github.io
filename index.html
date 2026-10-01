@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <title>Sachin Kumar | Loading...</title>
+    <meta name="description" content="Portfolio of Sachin Kumar, Data Science Intern & Developer.">
+    
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- External CSS & JS -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body style="background-color: var(--bg-light); color: var(--text-dark); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+
+    <!-- Top Right Theme Toggle: Identical to website main pages -->
+    <div style="position: absolute; top: 2rem; right: 2rem; z-index: 10;">
+        <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+            <svg id="themeIcon" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Main Loader Container -->
+    <div class="loader-container" id="loaderContainer" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem; text-align: center; max-width: 460px; width: 90%;">
+        <div class="illustration-box" style="width: 100%; max-width: 380px; display: flex; align-items: center; justify-content: center;">
+            <img src="./assets/loading-illustration.jpg" alt="Data Scientist Loading Illustration" class="loader-img" style="width: 100%; height: auto; max-height: 280px; object-fit: contain; transition: filter 0.3s ease;">
+        </div>
+
+        <div class="loading-title" style="font-size: 3.2rem; font-weight: 900; letter-spacing: 6px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 0.5rem; line-height: 1; color: var(--text-dark);">
+            LOADING <span class="dot-animated" style="display: inline-block; width: 12px; height: 12px; background-color: var(--text-dark); border-radius: 50%; animation: dotFade 1.2s infinite ease-in-out; margin-left: 4px;"></span>
+        </div>
+
+        <div class="progress-track" style="width: 220px; height: 4px; background-color: rgba(128, 128, 128, 0.2); border-radius: 4px; overflow: hidden; margin-top: 0.2rem;">
+            <div class="progress-fill" id="progressFill" style="height: 100%; width: 0%; background-color: var(--text-dark); border-radius: 4px; transition: width 0.05s linear;"></div>
+        </div>
+    </div>
+
+    <style>
+        /* Dark mode image inversion for seamless theme matching */
+        html.dark .loader-img {
+            filter: invert(1) contrast(1.1);
+        }
+
+        @keyframes dotFade {
+            0%, 100% { opacity: 0.2; transform: scale(0.6); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .loader-fade-out {
+            opacity: 0;
+            transform: scale(0.96);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        @media (max-width: 480px) {
+            .illustration-box {
+                max-width: 290px !important;
+            }
+            .loading-title {
+                font-size: 2.4rem !important;
+                letter-spacing: 4px !important;
+            }
+            .progress-track {
+                width: 180px !important;
+            }
+        }
+    </style>
+
+    <script>
+        // Ensure theme icon initializes correctly on load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof updateThemeIcon === 'function' && typeof isDarkMode !== 'undefined') {
+                updateThemeIcon(isDarkMode);
+            }
+        });
+
+        // Smooth Progress & Auto Transition to home.html
+        const progressFill = document.getElementById('progressFill');
+        const loaderContainer = document.getElementById('loaderContainer');
+
+        let pct = 0;
+        const duration = 2200; // 2.2 seconds
+        const interval = 20;
+        const step = 100 / (duration / interval);
+
+        const timer = setInterval(() => {
+            pct += step;
+            if (pct >= 100) {
+                pct = 100;
+                clearInterval(timer);
+                progressFill.style.width = '100%';
+                setTimeout(() => {
+                    loaderContainer.classList.add('loader-fade-out');
+                    setTimeout(() => {
+                        window.location.replace("home.html");
+                    }, 400);
+                }, 200);
+            } else {
+                progressFill.style.width = pct + '%';
+            }
+        }, interval);
+    </script>
+</body>
+</html>

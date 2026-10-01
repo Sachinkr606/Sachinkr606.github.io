@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <title>Projects | Sachin Kumar - Data Scientist</title>
+    <meta name="description" content="Explore featured Data Science, Machine Learning, Python, and SQL projects by Sachin Kumar.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-links" id="navMenu">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="projects.html" class="nav-link active">Projects</a>
+            <a href="journey.html" class="nav-link">Journey</a>
+            <a href="experience.html" class="nav-link">Experience</a>
+        </nav>
+
+        <!-- Center Logo Emblem -->
+        <div class="logo-wrapper">
+            <a href="home.html" class="logo-circle">SK</a>
+        </div>
+
+        <!-- Social Icons & Dark Mode -->
+        <div class="header-actions">
+            <a href="https://twitter.com" target="_blank" class="social-link twitter" title="Twitter">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+            </a>
+            <a href="https://github.com/Sachinkr606" target="_blank" class="social-link github" title="GitHub">
+                <svg viewBox="0 0 512 512"><path fill="currentColor" d="M256 32C132.3 32 32 134.9 32 261.7c0 101.5 64.2 187.5 153.2 217.9a17.56 17.56 0 0 0 3.8.4c8.3 0 11.5-6.1 11.5-11.4 0-5.5-.2-19.9-.3-39.1a102.4 102.4 0 0 1-22.6 2.7c-43.1 0-52.9-33.5-52.9-33.5-10.2-26.5-24.9-33.6-24.9-33.6-19.5-13.7-.1-14.1 1.4-14.1h.1c22.5 2 34.3 23.8 34.3 23.8 11.2 19.6 26.2 25.1 39.6 25.1a63 63 0 0 0 25.6-6c2-14.8 7.8-24.9 14.2-30.7-49.7-5.8-102-25.5-102-113.5 0-25.1 8.7-45.6 23-61.6-2.3-5.8-10-29.2 2.2-60.8a18.64 18.64 0 0 1 5-.5c8.1 0 26.4 3.1 56.6 24.1a208.21 208.21 0 0 1 112.2 0c30.2-21 48.5-24.1 56.6-24.1a18.64 18.64 0 0 1 5 .5c12.2 31.6 4.5 55 2.2 60.8 14.3 16.1 23 36.6 23 61.6 0 88.2-52.4 107.6-102.3 113.3 8 7.1 15.2 21.1 15.2 42.5 0 30.7-.3 55.5-.3 63 0 5.4 3.1 11.5 11.4 11.5a19.35 19.35 0 0 0 4-.4C415.9 449.2 480 363.1 480 261.7 480 134.9 379.7 32 256 32Z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/sachinkr606/" target="_blank" class="social-link linkedin" title="LinkedIn">
+                <svg viewBox="0 0 24 24">
+                    <rect class="bg-rect" width="24" height="24" rx="5"/>
+                    <path class="icon-path" d="M6 9h3v10H6V9zm1.5-4.5A1.75 1.75 0 109.25 6.25 1.75 1.75 0 007.5 4.5zM12 9h2.8v1.4h.04c.39-.74 1.34-1.52 2.76-1.52 2.96 0 3.5 1.95 3.5 4.48V19h-3v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.58V19h-3V9z"/>
+                </svg>
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kumarsachin8207548606@gmail.com" target="_blank" class="social-link email" title="Email Sachin">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </a>
+
+            <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+                <svg id="themeIcon" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="page-container" id="pageContainer">
+        <section class="view-section">
+            <h1 class="page-title">Where Data Meets Creativity</h1>
+            
+
+            <!-- Projects Grid: 2-Column Clean Layout -->
+            <div class="projects-grid">
+                
+                <!-- Project 1: Amazon Sales Power BI -->
+                <div class="project-card" data-category="analytics">
+                    <div class="project-img-box">
+                        <img src="./assets/amazon.png" alt="Amazon Product Sales Analytics" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-meta-top">
+                            <span class="project-category-tag">Power BI Dashboard</span>
+                         
+                        </div>
+                        <h2 class="project-title">Amazon Product Sales &amp; Rating Dashboard</h2>
+                        <p class="project-desc">An exploratory data analytics and Power BI dashboard built on 45,000+ Amazon product records, analyzing sales, pricing, discounts, ratings, categories, and customer insights through interactive visualizations.</p>
+                        <div class="project-tags">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Jupyter</span>
+                            <span class="tech-tag">DAX</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Excel</span>
+                            <span class="tech-tag">EDA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sachinkr606/Amazon-Product-Sales-Analytics-Power-BI" target="_blank" class="p-link github" title="GitHub Repository">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                <span>Code</span>
+                            </a>
+                            <a href="https://github.com/Sachinkr606/Amazon-Product-Sales-Analytics-Power-BI" target="_blank" class="p-link live" title="View Dashboard &amp; Repository">
+                                <span>View Dashboard</span>
+                                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Spotify Analytics -->
+                <div class="project-card" data-category="data-science">
+                    <div class="project-img-box">
+                        <img src="./assets/spotify.png" alt="Spotify Songs Analytics Dashboard" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-meta-top">
+                            <span class="project-category-tag">Power BI Dashboard</span>
+                       
+                        </div>
+                        <h2 class="project-title">Spotify Songs Analytics Dashboard</h2>
+                        <p class="project-desc">A data analytics and visualization dashboard analyzing 35,000+ Spotify song records to explore acousticness, danceability, energy, speechiness, popularity, and streaming trends. Built with Python, Pandas, Jupyter Notebook, and Power BI to uncover patterns and characteristics associated with popular songs.</p>
+                        <div class="project-tags">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Jupyter</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">EDA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sachinkr606/Spotify-Songs-Analytics-Dashboard" target="_blank" class="p-link github" title="GitHub Repository">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                <span>Code</span>
+                            </a>
+                            <a href="https://github.com/Sachinkr606/Spotify-Songs-Analytics-Dashboard" target="_blank" class="p-link live" title="View Insights &amp; Repository">
+                                <span>View Insights</span>
+                                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Portfolio Website -->
+                <div class="project-card" data-category="web-dev">
+                    <div class="project-img-box">
+                        <img src="./assets/home.png" alt="Developer &amp; Data Science Portfolio" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-meta-top">
+                            <span class="project-category-tag">Portfolio Website</span>
+                          
+                        </div>
+                        <h2 class="project-title">Portfolio Website</h2>
+                        <p class="project-desc">A modern, responsive Data Science portfolio website showcasing projects, technical skills, experience, and achievements through interactive UI, smooth animations, dynamic navigation, and a clean black-and-white visual design.</p>
+                        <div class="project-tags">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Animations</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sachinkr606/Sachinkr606.github.io" target="_blank" class="p-link github" title="GitHub Repository">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                <span>Code</span>
+                            </a>
+                            <a href="https://sachinkr606.github.io/Sachinkr606-Old-.github.io/" target="_blank" class="p-link live" title="Live Preview">
+                                <span>Live Demo</span>
+                                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Speed Typing Test -->
+                <div class="project-card" data-category="web-dev">
+                    <div class="project-img-box">
+                        <img src="./assets/typing test.png" alt="Speed Typing Tester Application" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-meta-top">
+                            <span class="project-category-tag">Python Application </span>
+                      
+                        </div>
+                        <h2 class="project-title">Interactive Speed Typing Tester</h2>
+                        <p class="project-desc">A real-time typing speed test application built in Python (main.py) calculating Words-Per-Minute (WPM), typing accuracy percentages, keystroke timing, and interactive error tracking.</p>
+                        <div class="project-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Tkinter</span>
+                            <span class="tech-tag">WPM Tracking</span>
+                            <span class="tech-tag">Real-Time UI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sachinkr606/TypingTest" target="_blank" class="p-link github" title="GitHub Repository">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                <span>Code</span>
+                            </a>
+                            <a href="https://github.com/Sachinkr606/TypingTest" target="_blank" class="p-link live" title="View Repository">
+                                <span>View App</span>
+                                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Phonebook Management -->
+                <div class="project-card" data-category="data-science">
+                    <div class="project-img-box">
+                        <img src="./assets/phoneBook.png" alt="PhoneBook Management System" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-meta-top">
+                            <span class="project-category-tag">Database System • C++ • File I/O</span>
+                         
+                        </div>
+                        <h2 class="project-title">PhoneBook Database &amp; File Management</h2>
+                        <p class="project-desc">A structured Contact Management system developed in C++ (phone book.cpp) implementing indexed file-handling, search trees, and robust CRUD operations with persistent storage.</p>
+                        <div class="project-tags">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Data Structures</span>
+                            <span class="tech-tag">File Handling</span>
+                            <span class="tech-tag">OOP</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sachinkr606/PhoneBook-Management-System" target="_blank" class="p-link github" title="GitHub Repository">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                <span>Code</span>
+                            </a>
+                            <a href="https://github.com/Sachinkr606/PhoneBook-Management-System" target="_blank" class="p-link live" title="View Source &amp; Repository">
+                                <span>View Source</span>
+                                <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- Floating Circular "Contact Me" Badge -->
+    <div class="floating-hire-badge">
+        <svg class="spinning-svg" viewBox="0 0 160 160">
+            <path id="badgeCirclePath" d="M 80, 80 m -62, 0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0" fill="none"/>
+            <text class="spinning-text">
+                <textPath href="#badgeCirclePath" startOffset="0%" textLength="385" lengthAdjust="spacing">
+                    • DATA SCIENTIST • MACHINE LEARNING • PYTHON •
+                </textPath>
+            </text>
+        </svg>
+        <a href="contact.html" class="badge-center-link">Contact<br>Me</a>
+    </div>
+
+    <!-- Resume Dark Popup Modal -->
+    <div class="modal-overlay" id="resumeModal" onclick="if(event.target === this) closeResumeModal()">
+        <div class="resume-modal-card">
+            <button class="resume-modal-close" onclick="closeResumeModal()" aria-label="Close">&times;</button>
+            <div class="resume-modal-body">
+                <h1 class="rm-name">SACHIN KUMAR</h1>
+                <p class="rm-title">DATA SCIENCE INTERN | ASPIRING DATA SCIENTIST | PYTHON | SQL | POWER BI | DATA ANALYSIS</p>
+                <p class="rm-contact">Jamshedpur, Jharkhand | kumarsachin8207548606@gmail.com<br>
+                    GitHub: <a href="https://github.com/Sachinkr606" target="_blank">github.com/Sachinkr606</a> &nbsp;|&nbsp;
+                    LinkedIn: <a href="https://linkedin.com/in/sachinkr606/" target="_blank">linkedin.com/in/sachinkr606/</a></p>
+                <div class="rm-section"><h2 class="rm-section-title">&#128100; About Me</h2><p>BCA student and Data Science Intern with hands-on expertise in Python, SQL, Machine Learning, Power BI, Excel, and data analytics. Focused on applying data-driven strategies and AI/ML algorithms to deliver actionable insights.</p></div>
+                <div class="rm-section"><h2 class="rm-section-title">&#127891; Education</h2><ul class="rm-list"><li><strong>BCA</strong> — Srinath University, Jamshedpur | 2024–Present | 69.05%</li><li><strong>Class XII</strong> — Punyark Vidya Mandir, Bihar | 2022–2024 | 48.9%</li><li><strong>Class X</strong> — Vidya Jyoti School, Jamshedpur | 2017–2022 | 64.75%</li></ul></div>
+                <div class="rm-section"><h2 class="rm-section-title">&#128188; Experience</h2><div class="rm-item"><div class="rm-item-header"><strong>Data Science Intern</strong> — Vizztal Academy, Jamshedpur | July 2026–Present</div><ul class="rm-list"><li>Processed 50,000+ rows using Python and SQL, improving pipeline efficiency by 35%.</li><li>Trained 4+ ML models achieving up to 88% accuracy.</li><li>Built 3+ Power BI dashboards tracking 10+ KPIs.</li></ul></div></div>
+                <div class="rm-section"><h2 class="rm-section-title">&#128640; Projects</h2><div class="rm-item"><div class="rm-item-header"><strong>Amazon Product Sales Analytics</strong> <span class="rm-tag">Power BI | SQL | Python</span></div><ul class="rm-list"><li>Analyzed 10,000+ product records for sales, ratings, and discount trends.</li></ul></div><div class="rm-item" style="margin-top:.75rem;"><div class="rm-item-header"><strong>Spotify Songs Analytics Dashboard</strong> <span class="rm-tag">Python | Power BI</span></div><ul class="rm-list"><li>Dashboard analyzing Spotify audio features and streaming performance metrics.</li></ul></div></div>
+                <div class="rm-section"><h2 class="rm-section-title">&#128296; Technical Skills</h2><div class="rm-skills-grid"><div class="rm-skill-item"><strong>Programming</strong><br>Python, C, C++</div><div class="rm-skill-item"><strong>Data & Analytics</strong><br>EDA, Data Cleaning, Statistics</div><div class="rm-skill-item"><strong>Databases</strong><br>SQL, MySQL</div><div class="rm-skill-item"><strong>Visualization</strong><br>Power BI, Excel, Matplotlib</div><div class="rm-skill-item"><strong>AI / ML</strong><br>Scikit-Learn, Predictive Modeling</div><div class="rm-skill-item"><strong>Tools</strong><br>Git, GitHub, Jupyter</div></div></div>
+                <div class="rm-section"><h2 class="rm-section-title">&#127942; Certifications</h2><ul class="rm-list"><li>AWS AI Practitioner Challenge — Amazon Web Services</li><li>Microsoft Excel with AI Masterclass</li><li>Basic Data Science and AI — Feuchr School of Excellence</li></ul></div>
+            </div>
+            <div class="resume-modal-footer">
+                <button class="btn-close-secondary" onclick="closeResumeModal()">Close</button>
+                <a href="Sachinkr606resume.pdf" download="Sachin_Kumar_Resume.pdf" class="btn-download-pdf">
+                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Download Resume PDF</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <span>2024 © All Rights Reserved.</span>
+        <div>Built with <span style="color: var(--primary);">♡</span> by <a href="https://sachinkr606.github.io/" target="_blank">Sachin Kumar</a></div>
+        <a href="contact.html">Say Hello</a>
+    </footer>
+
+</body>
+</html>
