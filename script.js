@@ -1,4 +1,4 @@
-﻿// Dark Mode Initialization & Controller
+// Dark Mode Initialization & Controller
 let isDarkMode = localStorage.getItem('theme') === 'dark';
 
 if (isDarkMode) {
@@ -217,7 +217,7 @@ function initSkillsAnimation() {
 }
 
 // Contact Form Handler for contact.html
-function handleContactSubmit(e) {
+async function handleContactSubmit(e) {
     if (e && e.preventDefault) e.preventDefault();
     const btn = document.getElementById('submitBtn');
     const alertBox = document.getElementById('formStatusAlert');
@@ -235,6 +235,7 @@ function handleContactSubmit(e) {
 
     if (!name || !email || !message) {
         alertBox.className = 'form-status-alert active error';
+        alertBox.style.display = 'block';
         alertBox.innerHTML = '<span>⚠️ Please fill in all required fields.</span>';
         return;
     }
@@ -242,26 +243,49 @@ function handleContactSubmit(e) {
     // Button sending state
     btn.disabled = true;
     btn.innerHTML = '<span>Sending...</span>';
+    alertBox.className = 'form-status-alert active';
+    alertBox.style.display = 'block';
+    alertBox.innerHTML = '<span>⏳ Delivering message to Sachin\'s email...</span>';
 
-    setTimeout(() => {
-        // Success state
-        alertBox.className = 'form-status-alert active success';
-        alertBox.innerHTML = `<span>✓ Thank you, <strong>${name}</strong>! Your message has been sent successfully. Sachin will get in touch soon.</span>`;
-        
-        // Form reset
-        const form = document.getElementById('contactForm');
-        if (form) form.reset();
+    try {
+        const response = await fetch('https://formsubmit.co/ajax/kumarsachin8207548606@gmail.com', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                _subject: subject || `New Portfolio Contact Message from ${name}`,
+                message: message,
+                _template: 'table'
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok || data.success === 'true' || data.success === true) {
+            alertBox.className = 'form-status-alert active success';
+            alertBox.innerHTML = `<span>✓ Thank you, <strong>${name}</strong>! Your message has been sent directly to Sachin's inbox.</span>`;
+            
+            const form = document.getElementById('contactForm');
+            if (form) form.reset();
+        } else {
+            throw new Error(data.message || 'Failed to send message.');
+        }
+    } catch (err) {
+        console.error('Email submission error:', err);
+        alertBox.className = 'form-status-alert active error';
+        alertBox.innerHTML = `<span>❌ Delivery failed. You can email directly at <a href="mailto:kumarsachin8207548606@gmail.com" style="color: inherit; text-decoration: underline;">kumarsachin8207548606@gmail.com</a>.</span>`;
+    } finally {
         btn.disabled = false;
         btn.innerHTML = `<span>Send Message</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13"></line>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
             </svg>`;
-
-        // Mailto trigger in background
-        const mailtoUrl = `mailto:kumarsachin8207548606@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
-        window.location.href = mailtoUrl;
-    }, 800);
+    }
 }
 
 

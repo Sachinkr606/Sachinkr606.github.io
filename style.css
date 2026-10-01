@@ -1366,22 +1366,59 @@ footer a {
     .page-container {
         padding: 0 5% 4rem 5%;
     }
-    .hero-layout {
+    .hero-layout,
+    .hero-section {
         flex-direction: column;
         text-align: center;
-        gap: 2.5rem;
+        gap: 2rem;
         min-height: auto;
         padding-top: 1rem;
     }
+    .hero-image-col,
+    .hero-img-col {
+        width: 100%;
+        max-width: 380px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .portrait-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .portrait-img,
+    .hero-img-col img {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+        max-height: 420px;
+        object-fit: contain;
+        display: block;
+    }
     .hero-text-col {
         align-items: center;
+        text-align: center;
+        width: 100%;
     }
     .hero-headline {
         font-size: 3rem;
         text-align: center;
     }
+    .hero-typed-heading {
+        font-size: 1.7rem;
+        min-height: 2.2rem;
+        justify-content: center;
+    }
+    .hero-desc-text,
     .hero-subtitle {
         text-align: center;
+    }
+    .hero-actions,
+    .hero-ctas {
+        justify-content: center;
+        width: 100%;
     }
     .about-grid {
         grid-template-columns: 1fr;
@@ -1468,9 +1505,28 @@ footer a {
         font-size: 3rem;
         margin-bottom: 2.5rem;
     }
+    .hero-image-col,
+    .hero-img-col {
+        max-width: 320px;
+    }
+    .portrait-img,
+    .hero-img-col img {
+        max-height: 360px;
+    }
     .hero-headline {
         font-size: 2.3rem;
     }
+    .hero-typed-heading {
+        font-size: 1.35rem;
+        min-height: 1.9rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+    .hero-tag {
+        font-size: 0.72rem;
+        padding: 0.35rem 0.85rem;
+    }
+    .hero-desc-text,
     .hero-subtitle {
         font-size: 0.95rem;
     }
@@ -1569,13 +1625,35 @@ footer a {
     .section-subheading {
         font-size: 2.2rem;
     }
+    .hero-image-col,
+    .hero-img-col {
+        max-width: 270px;
+    }
+    .portrait-img,
+    .hero-img-col img {
+        max-height: 300px;
+    }
     .hero-headline {
         font-size: 1.9rem;
     }
+    .hero-typed-heading {
+        font-size: 1.1rem;
+        min-height: 1.6rem;
+        justify-content: center;
+        margin-bottom: 0.8rem;
+    }
+    .hero-tag {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.75rem;
+    }
+    .hero-actions,
     .hero-ctas {
         flex-direction: column;
         width: 100%;
+        gap: 0.8rem;
     }
+    .btn-view-projects,
+    .btn-resume-dark,
     .btn-black {
         width: 100%;
         justify-content: center;
